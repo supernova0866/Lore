@@ -480,7 +480,7 @@
 
     /* ── FOOTER ────────────────────────────── */
     footer {
-      text-align: center; padding: 2.5rem;
+      text-align: center; padding: 2.5rem 2.5rem 6rem;
       font-family: 'DM Mono', monospace; font-size: .7rem;
       letter-spacing: .1em; color: var(--fg3);
       border-top: 1px solid var(--border);
@@ -664,7 +664,7 @@
         </div>
         <div>
           <div class="sl-name">Spotify</div>
-          <div class="sl-handle">Nova's profile</div>
+          <div class="sl-handle">nova's profile</div>
         </div>
       </a>
 
@@ -911,7 +911,7 @@
       listEl.innerHTML = preview.map((p, i) => renderProjectCard(p, i)).join('');
       // show button only if there are more projects
       const btn = document.getElementById('view-all-btn');
-      if (btn) btn.style.display = all.length > 3 || all.some(p => p.visibility === false) ? 'inline-flex' : 'none';
+      if (btn) btn.style.display = 'inline-flex';
     } catch {
       listEl.innerHTML = '<p style="color:var(--fg3);font-family:monospace;font-size:.8rem;">// could not load projects.json</p>';
     }
