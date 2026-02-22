@@ -22,6 +22,17 @@
     "redirect": null
   },
   {
+    "name": "Contradictionism",
+    "desc": "A philosophy project by me. It has more pratical things rather than experiments.",
+    "tags": [
+      "Philosophy",
+      "Writing"
+    ],
+    "status": "ongoing",
+    "visibility": false,
+    "redirect": "https://supernova0866.github.io/Contradictionism/#home"
+  },
+  {
     "name": "Discord Presence Bot",
     "desc": "A bot that exposes live Discord status \u2014 online state, activity, avatar, banner \u2014 powering the dynamic tracker on this page.",
     "tags": [
