@@ -489,6 +489,23 @@
     footer span { color: var(--accent); }
     [data-theme="cli"] footer::before { content: '// '; }
 
+    /* ── QUOTE REROLL ──────────────────────── */
+    .quote-reroll {
+      width: 28px; height: 28px;
+      border-radius: 7px;
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      color: var(--fg3);
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-top: .6rem;
+      transition: border-color .2s, color .2s, transform .35s ease;
+      opacity: 0; animation: fadeUp .7s .45s forwards;
+    }
+    .quote-reroll:hover { border-color: var(--accent); color: var(--accent); }
+    .quote-reroll.spinning svg { animation: spin .5s ease; }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    [data-theme="cli"] .quote-reroll { border-radius: 2px; }
+
     /* ── ANIMATIONS ────────────────────────── */
     @keyframes fadeUp {
       from { opacity:0; transform:translateY(18px); }
@@ -531,6 +548,9 @@
   <p class="hero-eyebrow">// welcome to my corner of the internet</p>
   <h1 class="hero-name">No<span>va</span></h1>
   <p class="hero-quote" id="hero-quote">Hmm.. this should be a quote...</p>
+  <button class="quote-reroll" id="quote-reroll" aria-label="New quote" title="Another quote">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>
+  </button>
   <div class="age-row">
     <span class="age-pill" id="age-hero">—</span>
     <button class="age-info" id="age-info-btn" aria-label="Age info">
@@ -771,20 +791,46 @@
   document.addEventListener('click', () => ageInfoBtn.classList.remove('open'));
 
   // ── QUOTES ───────────────────────────────────────────────────
+  let quoteList = [];
+
+  function pickQuote() {
+    const el = document.getElementById('hero-quote');
+    if (!el || !quoteList.length) return;
+    const prev = el.textContent;
+    let next = prev;
+    // avoid repeating same quote if possible
+    if (quoteList.length > 1) {
+      while (next === prev) next = quoteList[Math.floor(Math.random() * quoteList.length)];
+    }
+    el.textContent = next;
+  }
+
   async function loadQuote() {
     const el = document.getElementById('hero-quote');
     if (!el) return;
     try {
       const r = await fetch('quotes.json');
       if (!r.ok) throw new Error();
-      const list = await r.json();
-      if (Array.isArray(list) && list.length)
-        el.textContent = list[Math.floor(Math.random() * list.length)];
+      quoteList = await r.json();
+      if (Array.isArray(quoteList) && quoteList.length)
+        el.textContent = quoteList[Math.floor(Math.random() * quoteList.length)];
     } catch {
       el.textContent = 'Hmm.. this should be a quote...';
     }
   }
   loadQuote();
+
+  // reroll button
+  const rerollBtn = document.getElementById('quote-reroll');
+  if (rerollBtn) {
+    rerollBtn.addEventListener('click', () => {
+      pickQuote();
+      rerollBtn.classList.remove('spinning');
+      void rerollBtn.offsetWidth; // force reflow to restart animation
+      rerollBtn.classList.add('spinning');
+      rerollBtn.addEventListener('animationend', () => rerollBtn.classList.remove('spinning'), { once: true });
+    });
+  }
 
   // ── DISCORD ───────────────────────────────────────────────────
   // TODO: set your bot endpoint here
