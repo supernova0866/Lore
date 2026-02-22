@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Worldbuilding Project",
+    "desc": "An ever-expanding fictional universe \u2014 history, cultures, magic systems, characters. The lore document never stops growing.",
+    "tags": [
+      "Writing",
+      "Lore"
+    ],
+    "status": "ongoing",
+    "visibility": true,
+    "redirect": null
+  },
+  {
+    "name": "Game Concept",
+    "desc": "Designing mechanics, narrative systems, and game feel for a concept I'd actually want to play. From idea to full spec.",
+    "tags": [
+      "Game Design",
+      "Concept"
+    ],
+    "status": "ongoing",
+    "visibility": true,
+    "redirect": null
+  },
+  {
+    "name": "Discord Presence Bot",
+    "desc": "A bot that exposes live Discord status \u2014 online state, activity, avatar, banner \u2014 powering the dynamic tracker on this page.",
+    "tags": [
+      "Dev",
+      "Discord API"
+    ],
+    "status": "ongoing",
+    "visibility": true,
+    "redirect": null
+  }
+]

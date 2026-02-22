@@ -1,0 +1,22 @@
+[
+  {
+    "icon": "🎮",
+    "title": "Gaming",
+    "desc": "From open worlds to indie gems — if it has a good story or satisfying mechanics, I'm in."
+  },
+  {
+    "icon": "✍️",
+    "title": "Writing",
+    "desc": "Worldbuilding is my addiction. Lore documents longer than most textbooks, for worlds that exist only in my head."
+  },
+  {
+    "icon": "🎨",
+    "title": "Art",
+    "desc": "Characters, concepts, creatures. Drawing the things that live rent-free in my imagination."
+  },
+  {
+    "icon": "💻",
+    "title": "Dev",
+    "desc": "Building tools, bots, and side projects. Mostly self-taught, mostly chaotic, always learning."
+  }
+]

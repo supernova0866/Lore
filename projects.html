@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nova — Projects</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    a { text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+    * { scrollbar-width: thin; scrollbar-color: var(--border) var(--bg); }
+
+    :root { --transition: 0.35s ease; }
+
+    [data-theme="light"] {
+      --bg:#f5f4f0; --bg2:#eceae3; --bg3:#e0ddd4;
+      --fg:#1a1916; --fg2:#4a4843; --fg3:#9a9790;
+      --accent:#c0392b; --card:#fffefb; --border:#d4d1c8;
+      --tag-bg:#e8e5dc; --tag-fg:#4a4843;
+      --shadow:0 2px 20px rgba(0,0,0,.09);
+    }
+    [data-theme="dark"] {
+      --bg:#0f0f0f; --bg2:#161616; --bg3:#1e1e1e;
+      --fg:#e8e6e1; --fg2:#a8a5a0; --fg3:#5a5855;
+      --accent:#e8a87c; --card:#161616; --border:#2a2a2a;
+      --tag-bg:#222220; --tag-fg:#a8a5a0;
+      --shadow:0 2px 30px rgba(0,0,0,.4);
+    }
+    [data-theme="cobalt"] {
+      --bg:#0a1628; --bg2:#0d1f3c; --bg3:#102548;
+      --fg:#c8deff; --fg2:#7aa8e8; --fg3:#3a6aaa;
+      --accent:#4fc3f7; --card:#0d1f3c; --border:#1a3a6a;
+      --tag-bg:#102548; --tag-fg:#7aa8e8;
+      --shadow:0 2px 30px rgba(0,30,80,.5);
+    }
+    [data-theme="midnight"] {
+      --bg:#06060e; --bg2:#0c0c1a; --bg3:#111126;
+      --fg:#e0dff8; --fg2:#8887c8; --fg3:#3d3c70;
+      --accent:#a78bfa; --card:#0c0c1a; --border:#1a1a36;
+      --tag-bg:#111126; --tag-fg:#8887c8;
+      --shadow:0 2px 30px rgba(80,0,160,.2);
+    }
+    [data-theme="sepia"] {
+      --bg:#f8f0e3; --bg2:#f0e6d0; --bg3:#e8dcca;
+      --fg:#2c1a0e; --fg2:#6b4226; --fg3:#a0724a;
+      --accent:#8b4513; --card:#fdf6ec; --border:#d4b896;
+      --tag-bg:#ecdfc8; --tag-fg:#6b4226;
+      --shadow:0 2px 20px rgba(80,40,0,.1);
+    }
+    [data-theme="ivory"] {
+      --bg:#fafaf8; --bg2:#f4f3ef; --bg3:#eceae4;
+      --fg:#1c1c1a; --fg2:#5c5c58; --fg3:#9c9c98;
+      --accent:#c9a84c; --card:#fff; --border:#e0dfd8;
+      --tag-bg:#eceae4; --tag-fg:#5c5c58;
+      --shadow:0 2px 20px rgba(0,0,0,.06);
+    }
+    [data-theme="terminal"] {
+      --bg:#0a0a0a; --bg2:#0f0f0f; --bg3:#141414;
+      --fg:#00ff41; --fg2:#00cc33; --fg3:#007a1f;
+      --accent:#00ff41; --card:#0f0f0f; --border:#00401a;
+      --tag-bg:#001a0a; --tag-fg:#00cc33;
+      --shadow:0 2px 30px rgba(0,255,65,.05);
+    }
+    [data-theme="cli"] {
+      --bg:#010d01; --bg2:#021502; --bg3:#031e03;
+      --fg:#00ff41; --fg2:#00cc33; --fg3:#005c18;
+      --accent:#00ff41; --card:#021502; --border:#004d15;
+      --tag-bg:#021502; --tag-fg:#00cc33;
+      --shadow:0 0 20px rgba(0,255,65,.08);
+    }
+
+    body {
+      font-family: 'Syne', sans-serif;
+      background: var(--bg); color: var(--fg);
+      min-height: 100vh; overflow-x: hidden;
+      transition: background var(--transition), color var(--transition);
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: .25;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+    }
+    [data-theme="terminal"] body::after,
+    [data-theme="cli"] body::after {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9998;
+      background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,255,65,.015) 3px, rgba(0,255,65,.015) 4px);
+    }
+    [data-theme="cli"] body { text-shadow: 0 0 7px rgba(0,255,65,.35); }
+
+    /* theme switcher */
+    #theme-switcher { position: fixed; top: 1.4rem; right: 1.4rem; z-index: 9999; }
+    #theme-toggle {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--card); border: 1px solid var(--border); color: var(--fg);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: var(--shadow); transition: border-color .2s, transform .2s;
+    }
+    #theme-toggle:hover { border-color: var(--accent); transform: scale(1.06); }
+    #theme-dropdown {
+      position: absolute; top: calc(100% + 8px); right: 0;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 5px;
+      display: flex; flex-direction: column; gap: 2px;
+      min-width: 148px; box-shadow: var(--shadow);
+      opacity: 0; pointer-events: none;
+      transform: translateY(-6px) scale(.97);
+      transition: opacity .2s, transform .2s cubic-bezier(.34,1.56,.64,1);
+    }
+    #theme-dropdown.open { opacity: 1; pointer-events: all; transform: none; }
+    .t-opt {
+      display: flex; align-items: center; gap: 9px;
+      padding: 7px 11px; border-radius: 9px;
+      color: var(--fg2); font-size: .81rem; font-weight: 500;
+      transition: background .14s, color .14s; text-align: left; width: 100%;
+    }
+    .t-opt:hover { background: var(--bg3); color: var(--fg); }
+    .t-opt.active { color: var(--accent); background: var(--bg2); }
+
+    /* layout */
+    .page { max-width: 820px; margin: 0 auto; padding: 6rem 1.5rem 5rem; position: relative; z-index: 1; }
+
+    .back-link {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: 'DM Mono', monospace; font-size: .75rem;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--fg3); margin-bottom: 3rem; transition: color .2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    [data-theme="cli"] .back-link::before { content: '< '; }
+
+    .page-eyebrow {
+      font-family: 'DM Mono', monospace; font-size: .72rem;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 11px;
+    }
+    .page-eyebrow::after { content: ''; height: 1px; flex: 1; background: linear-gradient(to right, var(--border), transparent); }
+    [data-theme="cli"] .page-eyebrow::before { content: '$ '; }
+
+    .page-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      line-height: 1.05; letter-spacing: -.02em; margin-bottom: .6rem;
+    }
+    .page-title em { color: var(--accent); font-style: italic; }
+    [data-theme="cli"] .page-title,
+    [data-theme="terminal"] .page-title { font-family: 'DM Mono', monospace; font-size: clamp(1.6rem, 4vw, 2.6rem); }
+    [data-theme="cli"] .page-title em,
+    [data-theme="terminal"] .page-title em { font-style: normal; }
+
+    .page-count { font-family: 'DM Mono', monospace; font-size: .78rem; color: var(--fg3); margin-bottom: 2.5rem; letter-spacing: .06em; }
+
+    /* filter */
+    .filter-bar { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 2rem; }
+    .filter-btn {
+      font-family: 'DM Mono', monospace; font-size: .7rem;
+      padding: 5px 14px; border-radius: 50px;
+      border: 1px solid var(--border);
+      background: var(--tag-bg); color: var(--tag-fg);
+      letter-spacing: .04em; transition: all .18s;
+    }
+    .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .filter-btn.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+    [data-theme="cli"] .filter-btn { border-radius: 2px; }
+
+    /* cards */
+    .projects-list { display: flex; flex-direction: column; gap: 1rem; }
+    .project-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.7rem 1.9rem;
+      display: flex; align-items: flex-start; gap: 1.4rem;
+      transition: border-color .25s, transform .25s, box-shadow .25s;
+      opacity: 0; transform: translateY(16px);
+      animation: fadeUp .45s forwards;
+    }
+    .project-card:hover { border-color: var(--accent); transform: translateX(4px); box-shadow: var(--shadow); }
+    [data-theme="cli"] .project-card { border-radius: 2px; }
+
+    .project-num {
+      font-family: 'DM Mono', monospace; font-size: .7rem;
+      color: var(--accent); letter-spacing: .1em; padding-top: 3px; flex-shrink: 0; opacity: .7;
+    }
+    [data-theme="cli"] .project-num::before { content: '0x'; }
+
+    .project-info { flex: 1; }
+    .project-title { font-size: 1.08rem; font-weight: 700; margin-bottom: .38rem; display: flex; align-items: center; gap: 6px; }
+    .project-title a { color: inherit; display: inline-flex; align-items: center; gap: 5px; transition: color .2s; }
+    .project-title a:hover { color: var(--accent); }
+    .project-desc { font-size: .88rem; color: var(--fg2); line-height: 1.65; }
+    .project-tags { display: flex; gap: 6px; margin-top: .9rem; flex-wrap: wrap; }
+
+    .tag {
+      font-family: 'DM Mono', monospace; font-size: .69rem;
+      padding: 4px 12px; border-radius: 50px;
+      background: var(--tag-bg); color: var(--tag-fg);
+      border: 1px solid var(--border); letter-spacing: .04em;
+      transition: border-color .2s, color .2s;
+    }
+    .tag:hover { border-color: var(--accent); color: var(--accent); }
+    [data-theme="cli"] .tag { border-radius: 2px; }
+    [data-theme="cli"] .tag::before { content: '--'; color: var(--fg3); }
+
+    .badge {
+      font-family: 'DM Mono', monospace; font-size: .63rem;
+      padding: 4px 10px; border-radius: 50px;
+      background: var(--tag-bg); color: var(--accent);
+      border: 1px solid var(--accent); letter-spacing: .08em; text-transform: uppercase;
+    }
+    .badge.completed { color: #43b581; border-color: #43b581; }
+    .badge.paused    { color: #faa61a; border-color: #faa61a; }
+
+    .empty { font-family: 'DM Mono', monospace; font-size: .82rem; color: var(--fg3); padding: 2rem 0; text-align: center; letter-spacing: .06em; }
+
+    footer {
+      text-align: center; padding: 3rem 1.5rem 2rem;
+      font-family: 'DM Mono', monospace; font-size: .7rem;
+      letter-spacing: .1em; color: var(--fg3);
+      border-top: 1px solid var(--border); position: relative; z-index: 1;
+    }
+    footer span { color: var(--accent); }
+    [data-theme="cli"] footer::before { content: '// '; }
+
+    @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+    @media (prefers-reduced-motion: reduce) { .project-card { animation: none; opacity: 1; transform: none; } }
+    @media (max-width: 580px) { .page { padding-top: 5rem; } }
+  </style>
+</head>
+<body>
+
+<div id="theme-switcher">
+  <button id="theme-toggle" aria-label="Switch theme"></button>
+  <div id="theme-dropdown"></div>
+</div>
+
+<div class="page">
+  <a href="index.html" class="back-link">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+    Back to home
+  </a>
+
+  <div class="page-eyebrow">projects</div>
+  <h1 class="page-title">Everything I've <em>built</em></h1>
+  <p class="page-count" id="page-count">// loading...</p>
+
+  <div class="filter-bar" id="filter-bar">
+    <button class="filter-btn active" data-filter="all">All</button>
+  </div>
+
+  <div class="projects-list" id="projects-list">
+    <p class="empty">// loading projects...</p>
+  </div>
+</div>
+
+<footer>built by <span>Nova</span> · no template, just vibes</footer>
+
+<script>
+  'use strict';
+
+  const THEMES = [
+    { id: 'light',    label: 'Light',    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2m-7.07-14.07 1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2m-4.93-7.07-1.41 1.41M6.34 17.66l-1.41 1.41"/></svg>` },
+    { id: 'dark',     label: 'Dark',     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>` },
+    { id: 'cobalt',   label: 'Cobalt',   icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>` },
+    { id: 'midnight', label: 'Midnight', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"/></svg>` },
+    { id: 'sepia',    label: 'Sepia',    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" x2="6" y1="2" y2="4"/><line x1="10" x2="10" y1="2" y2="4"/><line x1="14" x2="14" y1="2" y2="4"/></svg>` },
+    { id: 'ivory',    label: 'Ivory',    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z"/></svg>` },
+    { id: 'terminal', label: 'Terminal', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 10 3 3-3 3"/><path d="M12 17h7"/></svg>` },
+    { id: 'cli',      label: 'CLI',      icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg>` },
+  ];
+
+  const html = document.documentElement;
+  const toggleBtn = document.getElementById('theme-toggle');
+  const dropdown  = document.getElementById('theme-dropdown');
+  let currentTheme = localStorage.getItem('nova-theme') || 'dark';
+
+  function setTheme(id) {
+    currentTheme = id;
+    html.setAttribute('data-theme', id);
+    localStorage.setItem('nova-theme', id);
+    toggleBtn.innerHTML = THEMES.find(x => x.id === id).icon;
+    buildDropdown();
+  }
+  function buildDropdown() {
+    dropdown.innerHTML = THEMES.map(t => `
+      <button class="t-opt${t.id === currentTheme ? ' active' : ''}" data-id="${t.id}">${t.icon} ${t.label}</button>
+    `).join('');
+    dropdown.querySelectorAll('.t-opt').forEach(b =>
+      b.addEventListener('click', () => { setTheme(b.dataset.id); dropdown.classList.remove('open'); })
+    );
+  }
+  toggleBtn.addEventListener('click', e => { e.stopPropagation(); dropdown.classList.toggle('open'); });
+  document.addEventListener('click', () => dropdown.classList.remove('open'));
+  dropdown.addEventListener('click', e => e.stopPropagation());
+  setTheme(currentTheme);
+
+  // ── PROJECTS ──────────────────────────────────────────────────
+  const STATUS_LABEL = { ongoing: 'ongoing', completed: 'completed', paused: 'paused' };
+  const LINK_ICON = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>`;
+
+  let allProjects = [];
+  let activeFilter = 'all';
+
+  function renderProjects() {
+    const listEl = document.getElementById('projects-list');
+    const filtered = activeFilter === 'all'
+      ? allProjects
+      : allProjects.filter(p => (p.tags || []).map(t => t.toLowerCase()).includes(activeFilter));
+
+    if (!filtered.length) { listEl.innerHTML = '<p class="empty">// no projects found</p>'; return; }
+
+    listEl.innerHTML = filtered.map((p, i) => {
+      const num = String(i + 1).padStart(3, '0');
+      const tags = (p.tags || []).map(t => `<span class="tag">${t}</span>`).join('');
+      const status = p.status ? `<span class="badge ${p.status}">${STATUS_LABEL[p.status] || p.status}</span>` : '';
+      const titleInner = p.redirect
+        ? `<a href="${p.redirect}" target="_blank" rel="noopener">${p.name} ${LINK_ICON}</a>`
+        : p.name;
+      return `
+        <div class="project-card" style="animation-delay:${i * 60}ms">
+          <div class="project-num">${num}</div>
+          <div class="project-info">
+            <div class="project-title">${titleInner}</div>
+            <div class="project-desc">${p.desc}</div>
+            <div class="project-tags">${tags}${status}</div>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  function buildFilters(projects) {
+    const tagSet = new Set();
+    projects.forEach(p => (p.tags || []).forEach(t => tagSet.add(t.toLowerCase())));
+    const bar = document.getElementById('filter-bar');
+    bar.innerHTML = `<button class="filter-btn active" data-filter="all">All</button>`
+      + Array.from(tagSet).map(t => `<button class="filter-btn" data-filter="${t}">${t}</button>`).join('');
+    bar.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeFilter = btn.dataset.filter;
+        bar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderProjects();
+      });
+    });
+  }
+
+  async function loadProjects() {
+    const listEl  = document.getElementById('projects-list');
+    const countEl = document.getElementById('page-count');
+    try {
+      const r = await fetch('projects.json');
+      if (!r.ok) throw new Error();
+      allProjects = await r.json();
+      countEl.textContent = `// ${allProjects.length} project${allProjects.length !== 1 ? 's' : ''}`;
+      buildFilters(allProjects);
+      renderProjects();
+    } catch {
+      listEl.innerHTML = '<p class="empty">// could not load projects.json</p>';
+      countEl.textContent = '';
+    }
+  }
+
+  loadProjects();
+</script>
+</body>
+</html>
