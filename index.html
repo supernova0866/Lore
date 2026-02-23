@@ -639,7 +639,7 @@
             <span class="dc-tag" id="dc-tag"></span>
           </div>
           <div id="dc-activity" class="dc-activity">
-            <span class="dc-loading">// fetching status...</span>
+            <span class="dc-loading">// connecting...</span>
           </div>
         </div>
       </div>
@@ -832,25 +832,51 @@
     });
   }
 
-  // ── DISCORD ───────────────────────────────────────────────────
-  // TODO: set your bot endpoint here
-  const DISCORD_ENDPOINT = null; // e.g. 'https://your-bot.example.com/presence'
+  // ── DISCORD (Lanyard) ────────────────────────────────────────
+  const LANYARD_ID = '875703615099134013';
 
   async function fetchDiscord() {
-    if (!DISCORD_ENDPOINT) {
-      document.getElementById('dc-activity').innerHTML = '<span class="dc-loading">// bot endpoint not set yet</span>';
-      return;
-    }
     try {
-      const data = await (await fetch(DISCORD_ENDPOINT)).json();
-      // shape: { username, discriminator, status, activity, avatar_url, banner_url }
-      if (data.username) document.getElementById('dc-username').textContent = data.username;
-      if (data.discriminator) document.getElementById('dc-tag').textContent = '#' + data.discriminator;
-      document.getElementById('dc-dot').className = 'dc-dot ' + (data.status || '');
-      document.getElementById('dc-activity').textContent = data.activity || '';
-      if (data.avatar_url) document.getElementById('dc-avatar').src = data.avatar_url;
+      const res = await fetch(`https://api.lanyard.rest/v1/users/${LANYARD_ID}`);
+      const json = await res.json();
+      if (!json.success) throw new Error();
+      const d = json.data;
+
+      // avatar
+      const avatarHash = d.discord_user.avatar;
+      const avatarUrl = avatarHash
+        ? `https://cdn.discordapp.com/avatars/${LANYARD_ID}/${avatarHash}.${avatarHash.startsWith('a_') ? 'gif' : 'png'}?size=128`
+        : `https://cdn.discordapp.com/embed/avatars/${parseInt(d.discord_user.discriminator || '0') % 5}.png`;
+      document.getElementById('dc-avatar').src = avatarUrl;
+
+      // username
+      const uname = d.discord_user.global_name || d.discord_user.username;
+      document.getElementById('dc-username').textContent = uname;
+
+      // discriminator (hidden for new usernames with #0)
+      const disc = d.discord_user.discriminator;
+      document.getElementById('dc-tag').textContent = disc && disc !== '0' ? '#' + disc : '';
+
+      // status dot
+      const status = d.discord_status || 'offline';
+      document.getElementById('dc-dot').className = 'dc-dot ' + status;
+
+      // activity — show what they're doing (game, spotify, custom status, etc.)
+      const actEl = document.getElementById('dc-activity');
+      const act = (d.activities || []).find(a => a.type !== 4); // skip custom status (type 4)
+      const custom = (d.activities || []).find(a => a.type === 4);
+
+      if (act) {
+        const typeLabel = ['Playing', 'Streaming', 'Listening to', 'Watching', '', 'Competing in'][act.type] || '';
+        const detail = act.details ? ` — ${act.details}` : '';
+        actEl.textContent = `${typeLabel} ${act.name}${detail}`.trim();
+      } else if (custom && custom.state) {
+        actEl.textContent = custom.state;
+      } else {
+        actEl.textContent = status === 'offline' ? 'Offline' : 'Online';
+      }
     } catch {
-      document.getElementById('dc-activity').innerHTML = '<span class="dc-loading">// could not reach bot</span>';
+      document.getElementById('dc-activity').innerHTML = '<span class="dc-loading">// could not reach Lanyard</span>';
     }
   }
   fetchDiscord();
