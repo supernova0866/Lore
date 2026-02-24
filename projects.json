@@ -1,23 +1,23 @@
 [
   {
-    "name": "Worldbuilding Project",
-    "desc": "An ever-expanding fictional universe \u2014 history, cultures, magic systems, characters. The lore document never stops growing.",
+    "name": "Between Hell and Heaven",
+    "desc": "An ever-expanding fictional universe, Gods, Monsters, Heroes and Wars. The lore document never stops growing.",
     "tags": [
       "Writing",
-      "Lore"
+      "Worldbuilding"
     ],
     "status": "ongoing",
     "visibility": true,
-    "redirect": null
+    "redirect": "https://nephryx.super.site/"
   },
   {
-    "name": "Game Concept",
-    "desc": "Designing mechanics, narrative systems, and game feel for a concept I'd actually want to play. From idea to full spec.",
+    "name": "Arcanum",
+    "desc": "A Worldbuilding App full of essential and even trivial features for every writer's need. Uses SupabaseDB.",
     "tags": [
-      "Game Design",
-      "Concept"
+      "Coding",
+      "App"
     ],
-    "status": "ongoing",
+    "status": "paused",
     "visibility": true,
     "redirect": null
   },
@@ -25,22 +25,66 @@
     "name": "Contradictionism",
     "desc": "A philosophy project by me. It has more pratical things rather than experiments.",
     "tags": [
-      "Philosophy",
-      "Writing"
+      "Writing",
+      "Philosophy"
     ],
     "status": "ongoing",
     "visibility": false,
     "redirect": "https://supernova0866.github.io/Contradictionism/#home"
   },
   {
-    "name": "Discord Presence Bot",
-    "desc": "A bot that exposes live Discord status \u2014 online state, activity, avatar, banner \u2014 powering the dynamic tracker on this page.",
+    "name": "Zenith",
+    "desc": "A discord multipupose Utility Bot.",
     "tags": [
-      "Dev",
-      "Discord API"
+      "Coding",
+      "Discord Bot"
+    ],
+    "status": "paused",
+    "visibility": true,
+    "redirect": null
+  },
+  {
+    "name": "Kingslayer",
+    "desc": "A 2D game, about an assassin who must defeat the 8 kings to save the world from perils.",
+    "tags": [
+      "Coding",
+      "Game"
+    ],
+    "status": "planned",
+    "visibility": false,
+    "redirect": null
+  },
+  {
+    "name": "Wevo",
+    "desc": "A Discord bot primirilary for creating embeds and sending them through webhooks. Wevo is short for WebhookEvo.",
+    "tags": [
+      "Coding",
+      "Discord Bot"
+    ],
+    "status": "paused",
+    "visibility": false,
+    "redirect": null
+  },
+  {
+    "name": "EidolonOS (EOS)",
+    "desc": "EidolonOS (EOS) is a free, open-source, GitHub-based profile builder for creating aesthetic, interactive personal websites.",
+    "tags": [
+      "Coding",
+      "App"
+    ],
+    "status": "planned",
+    "visibility": false,
+    "redirect": "https://github.com/supernova0866/EidolonOS"
+  },
+  {
+    "name": "Wings and Ashes",
+    "desc": "A WB based on GoT but more grounded. Gritty Fantasy with a touch of Medieavel life.",
+    "tags": [
+      "Writing",
+      "Worldbuilding"
     ],
     "status": "ongoing",
-    "visibility": true,
+    "visibility": false,
     "redirect": null
   }
 ]
