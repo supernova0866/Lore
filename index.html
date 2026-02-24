@@ -584,6 +584,9 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
       .reveal, .hero-eyebrow, .hero-name, .hero-quote, .age-row, .scroll-cue { opacity: 1 !important; transform: none !important; }
+      .scroll-line {
+    background-image: linear-gradient(to bottom, var(--accent, #e8a87c), transparent) !important;
+    opacity: 0.8; }
     }
 
     /* ===== responsive ===== */
