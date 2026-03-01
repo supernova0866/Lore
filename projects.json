@@ -17,9 +17,9 @@
       "Coding",
       "App"
     ],
-    "status": "paused",
+    "status": "completed",
     "visibility": true,
-    "redirect": null
+    "redirect": "https://supernova0866.github.io/Arcanum"
   },
   {
     "name": "Contradictionism",
@@ -72,7 +72,7 @@
       "Coding",
       "App"
     ],
-    "status": "planned",
+    "status": "completed",
     "visibility": false,
     "redirect": "https://github.com/supernova0866/EidolonOS"
   },
