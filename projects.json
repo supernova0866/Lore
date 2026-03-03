@@ -28,7 +28,7 @@
       "Writing",
       "Philosophy"
     ],
-    "status": "ongoing",
+    "status": "completed",
     "visibility": false,
     "redirect": "https://supernova0866.github.io/Contradictionism/#home"
   },
@@ -86,5 +86,16 @@
     "status": "ongoing",
     "visibility": false,
     "redirect": null
+  },
+  {
+    "name": "$UPERNOVÆ",
+    "desc": "A collection of fun, pointless and strange tools",
+    "tags": [
+      "Coding",
+      "Web"
+    ],
+    "status": "completed",
+    "visibility": false,
+    "redirect": "https://supernova0866.github.io/supernovae/"
   }
 ]
