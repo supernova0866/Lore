@@ -6,7 +6,7 @@
       <stop offset="100%" stop-color="#b8860b"/>
     </radialGradient>
     <clipPath id="clip">
-      <text x="16" y="24" text-anchor="middle" font-size="24">✦</text>
+      <text x="16" y="26.4" text-anchor="middle" font-size="30">✦</text>
     </clipPath>
   </defs>
   <rect x="0" y="0" width="32" height="32" fill="url(#g)" clip-path="url(#clip)"/>
