@@ -1,14 +1,14 @@
 [
   {
-    "name": "Between Heaven and Hell",
-    "desc": "An ever-expanding fictional universe, Gods, Monsters, Heroes and Wars. The lore document never stops growing.",
+    "name": "$UPERNOVÆ",
+    "desc": "A collection of fun, pointless and strange tools",
     "tags": [
-      "Writing",
-      "Worldbuilding"
+      "Coding",
+      "Web"
     ],
-    "status": "ongoing",
+    "status": "completed",
     "visibility": true,
-    "redirect": "https://nephryx.super.site/"
+    "redirect": "https://supernova0866.github.io/supernovae/"
   },
   {
     "name": "Arcanum",
@@ -22,6 +22,17 @@
     "redirect": "https://supernova0866.github.io/Arcanum"
   },
   {
+    "name": "Py Bolt",
+    "desc": "A in-browser Python IDE with a loop explainer.",
+    "tags": [
+      "Coding",
+      "Web"
+    ],
+    "status": "completed",
+    "visibility": true,
+    "redirect": "https://supernova0866.github.io/PyBolt/"    
+  },
+  {
     "name": "Contradictionism",
     "desc": "A philosophy project by me. It has more pratical things rather than experiments.",
     "tags": [
@@ -33,6 +44,39 @@
     "redirect": "https://supernova0866.github.io/Contradictionism/#home"
   },
   {
+    "name": "EidolonOS (EOS)",
+    "desc": "EidolonOS (EOS) is a free, open-source, GitHub-based profile builder for creating aesthetic, interactive personal websites.",
+    "tags": [
+      "Coding",
+      "App"
+    ],
+    "status": "completed",
+    "visibility": false,
+    "redirect": "https://github.com/supernova0866/EidolonOS"
+  },
+  {
+    "name": "Between Heaven and Hell",
+    "desc": "An ever-expanding fictional universe, Gods, Monsters, Heroes and Wars. The lore document never stops growing.",
+    "tags": [
+      "Writing",
+      "Worldbuilding"
+    ],
+    "status": "ongoing",
+    "visibility": false,
+    "redirect": "https://nephryx.super.site/"
+  },
+  {
+    "name": "Wings and Ashes",
+    "desc": "A WB based on GoT but more grounded. Gritty Fantasy with a touch of Medieval life.",
+    "tags": [
+      "Writing",
+      "Worldbuilding"
+    ],
+    "status": "ongoing",
+    "visibility": false,
+    "redirect": null
+  },
+  {
     "name": "Zenith",
     "desc": "A discord multipupose Utility Bot.",
     "tags": [
@@ -40,17 +84,6 @@
       "Discord Bot"
     ],
     "status": "paused",
-    "visibility": true,
-    "redirect": null
-  },
-  {
-    "name": "Kingslayer",
-    "desc": "A 2D game, about an assassin who must defeat the 8 kings to save the world from perils.",
-    "tags": [
-      "Coding",
-      "Game"
-    ],
-    "status": "planned",
     "visibility": false,
     "redirect": null
   },
@@ -66,36 +99,14 @@
     "redirect": null
   },
   {
-    "name": "EidolonOS (EOS)",
-    "desc": "EidolonOS (EOS) is a free, open-source, GitHub-based profile builder for creating aesthetic, interactive personal websites.",
+    "name": "Kingslayer",
+    "desc": "A 2D game, about an assassin who must defeat the 8 kings to save the world from perils.",
     "tags": [
       "Coding",
-      "App"
+      "Game"
     ],
-    "status": "completed",
-    "visibility": false,
-    "redirect": "https://github.com/supernova0866/EidolonOS"
-  },
-  {
-    "name": "Wings and Ashes",
-    "desc": "A WB based on GoT but more grounded. Gritty Fantasy with a touch of Medieval life.",
-    "tags": [
-      "Writing",
-      "Worldbuilding"
-    ],
-    "status": "ongoing",
+    "status": "planned",
     "visibility": false,
     "redirect": null
-  },
-  {
-    "name": "$UPERNOVÆ",
-    "desc": "A collection of fun, pointless and strange tools",
-    "tags": [
-      "Coding",
-      "Web"
-    ],
-    "status": "completed",
-    "visibility": false,
-    "redirect": "https://supernova0866.github.io/supernovae/"
   }
 ]
