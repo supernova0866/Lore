@@ -23,7 +23,7 @@
   },
   {
     "name": "Py Bolt",
-    "desc": "A in-browser Python IDE with a loop explainer.",
+    "desc": "An in-browser Python IDE with a loop explainer.",
     "tags": [
       "Coding",
       "Web"
